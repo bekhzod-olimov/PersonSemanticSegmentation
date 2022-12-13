@@ -15,6 +15,16 @@
 ![img](https://user-images.githubusercontent.com/50166164/207239733-128c710b-e9c1-44aa-a3c9-3284ecba2031.png)
 ![img](https://user-images.githubusercontent.com/50166164/207239774-7be962c3-89a2-48b6-ba43-3fdc0b392bc6.png)
 
+### Unzip GT Images
+```python
+unzip gt.zip
+
+```
+### Unzip Input Images
+```python
+unzip tr.zip
+```
+
 ### Run python script
 ```python
 python train.py --batch_size=64
