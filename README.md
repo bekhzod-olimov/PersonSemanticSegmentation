@@ -4,3 +4,4 @@
 
 ### Sample Images with the corresponding GT masks:
 ![img](https://user-images.githubusercontent.com/50166164/207236717-57d57034-0710-491a-afb9-5bfbfd16d83f.png)
+![img](https://user-images.githubusercontent.com/50166164/207236880-9bcda4fd-9c20-4c85-acbd-a1ef20f29f41.png)
