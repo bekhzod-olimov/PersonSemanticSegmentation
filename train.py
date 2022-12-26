@@ -94,7 +94,7 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(description='Person Semantic Segmentation Arguments')
     parser.add_argument("-sp", "--save_path", type=str, default='saved_models', help="Path to save trained models")
     parser.add_argument("-bs", "--batch_size", type=int, default=16, help="Batch size")
-    parser.add_argument("-is", "--im_size", type=int, default=320, help="Batch size")
+    parser.add_argument("-is", "--im_size", type=int, default=320, help="Images size")
     parser.add_argument("-d", "--device", type=str, default='cuda:1', help="GPU device number")
     parser.add_argument("-ip", "--ims_path", type=str, default='data.csv', help="Path to the data")
     parser.add_argument("-bb", "--backbone", type=str, default='timm-mobilenetv3_large_100', help="Model name for backbone")
