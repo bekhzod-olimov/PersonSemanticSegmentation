@@ -7,8 +7,8 @@ from segmentation_models_pytorch.losses import DiceLoss
 import albumentations as A
 
 IMAGE_SIZE = 320
-ENCODER="timm-mobilenetv3_large_100"
-WEIGHTS='imagenet'
+ENCODER = "timm-mobilenetv3_large_100"
+WEIGHTS = 'imagenet'
 BATCH_SIZE = 16
 DEVICE = 'cuda:1'
 
