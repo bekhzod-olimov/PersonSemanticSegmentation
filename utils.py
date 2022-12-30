@@ -8,7 +8,7 @@ import albumentations as A
 
 IMAGE_SIZE = 320
 ENCODER = "timm-mobilenetv3_large_100"
-WEIGHTS = 'imagenet'
+WEIGHTS = "imagenet"
 BATCH_SIZE = 16
 DEVICE = 'cuda:1'
 
@@ -80,7 +80,6 @@ class SegmentationModel(nn.Module):
             loss1 = DiceLoss(mode='binary')(logits, masks)
             loss2 = nn.BCEWithLogitsLoss()(logits, masks)
             
-            return logits, loss1+loss2
+            return logits, loss1 + loss2
 
         return logits
-    
