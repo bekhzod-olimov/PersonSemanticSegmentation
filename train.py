@@ -108,8 +108,8 @@ def run(args):
 
     for epoch in range(epochs):
 
-        train_loss = train_fn(trainloader, model, optimizer)
-        valid_loss = eval_fn(validloader, model)
+        train_loss = train_fn(trainloader, model, optimizer, device)
+        valid_loss = eval_fn(validloader, model, device)
 
         if valid_loss < best_valid_loss:
             best_valid_loss = valid_loss
