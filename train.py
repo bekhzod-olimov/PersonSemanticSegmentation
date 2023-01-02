@@ -103,6 +103,7 @@ def run(args):
         # Return average loss of the epoch
         return total_loss / len(data_loader)
     
+    # Set the best validation loss to infinity
     best_valid_loss = np.Inf
     optimizer = torch.optim.Adam(model.parameters(), lr=lr)
 
