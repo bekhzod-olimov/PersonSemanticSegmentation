@@ -83,9 +83,13 @@ def run(args):
         
         # Set the validation loss to 0
         total_loss = 0
-
+        
+        # We don't need gradients in validation
         with torch.no_grad():
+            
+            # Go through the dataloader
             for images, masks in tqdm(data_loader):
+                
                 images = images.to(DEVICE)
                 masks = masks.to(DEVICE)
                 optimizer.zero_grad()
