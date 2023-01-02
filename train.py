@@ -25,11 +25,13 @@ def run(args):
     df = pd.read_csv(path)
     train_df, valid_df = train_test_split(df, test_size=0.2, random_state=42)
     
+    # Split the data into train, validation sets
     trainset = SegmentationDataset(df=train_df, augmentations=get_train_augs())
     validset = SegmentationDataset(df=valid_df, augmentations=get_valid_augs())
     print(f"Size of Trainset : {len(trainset)}")
     print(f"Size of Validset : {len(validset)}")
     
+    # Create train and validation dataloaders
     trainloader = DataLoader(trainset, batch_size=bs, shuffle=True)
     validloader = DataLoader(validset, batch_size=bs, shuffle=False)
     print(f"Number of batches in the trainloader: {len(trainloader)}")
