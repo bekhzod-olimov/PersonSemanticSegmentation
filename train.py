@@ -80,6 +80,8 @@ def run(args):
 
         # Change to evaluation mode
         model.eval()
+        
+        # Set the validation loss to 0
         total_loss = 0
 
         with torch.no_grad():
