@@ -44,7 +44,9 @@ def run(args):
     # Train function
     def train_fn(data_loader, model, optimizer):
 
+        # Change to train mode
         model.train()
+        
         # Set initial loss to 0
         total_loss = 0
         
