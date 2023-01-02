@@ -121,7 +121,8 @@ def run(args):
             best_valid_loss = valid_loss
             torch.save(model.state_dict(), f'{save_path}/best_model.pt')
             print("Best model is saved!")
-
+        
+        # Verbose
         print(f"\nEpoch {epoch+1} is completed!")
         print(f"Train loss: {train_loss:.3f}")
         print(f"Validation loss: {valid_loss:.3f}")   
