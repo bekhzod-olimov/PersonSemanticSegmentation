@@ -37,6 +37,7 @@ def run(args):
     print(f"Number of batches in the trainloader: {len(trainloader)}")
     print(f"Number of batches in the validloader: {len(validloader)}")
     
+    # Create the model and move it to gpu
     model = SegmentationModel()
     model.to(device)
 
