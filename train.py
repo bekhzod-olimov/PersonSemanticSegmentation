@@ -60,7 +60,7 @@ def run(args):
 
         return total_loss / len(data_loader)
 
-
+    # Validation function
     def eval_fn(data_loader, model):
 
         model.eval()
