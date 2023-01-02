@@ -76,6 +76,7 @@ def run(args):
     # Validation function
     def eval_fn(data_loader, model):
 
+        # Change to evaluation mode
         model.eval()
         total_loss = 0
 
