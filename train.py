@@ -58,12 +58,18 @@ def run(args):
             # Reset gradient of the optimizer
             optimizer.zero_grad()
             
+            # Compute logits and loss
             logits, loss = model(images, masks)
+            
+            # Backprop
             loss.backward()
+            
+            # Optimizer params
             optimizer.step()
 
+            # Add loss of the batch to the total loss
             total_loss += loss.item()
-
+        
         return total_loss / len(data_loader)
 
     # Validation function
