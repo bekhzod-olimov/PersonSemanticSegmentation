@@ -105,6 +105,8 @@ def run(args):
     
     # Set the best validation loss to infinity
     best_valid_loss = np.Inf
+    
+    # Initialize Adam optimizer
     optimizer = torch.optim.Adam(model.parameters(), lr=lr)
 
     for epoch in range(epochs):
