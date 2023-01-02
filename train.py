@@ -41,6 +41,7 @@ def run(args):
     model = SegmentationModel()
     model.to(device)
 
+    # Train function
     def train_fn(data_loader, model, optimizer):
 
         model.train()
