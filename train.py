@@ -127,7 +127,6 @@ def run(args):
         print(f"Train loss: {train_loss:.3f}")
         print(f"Validation loss: {valid_loss:.3f}")   
     
-    
 if __name__ == "__main__":
     
     parser = argparse.ArgumentParser(description='Person Semantic Segmentation Arguments')
