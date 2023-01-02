@@ -7,11 +7,11 @@ from sklearn.model_selection import train_test_split
 from tqdm import tqdm
 from utils import *
 
-
 def run(args):
     
-    backbone=args.backbone
-    epochs=args.epochs
+    # Get the training arguments
+    backbone = args.backbone
+    epochs = args.epochs
     device = args.device
     path = args.ims_path
     bs = args.batch_size
@@ -21,6 +21,7 @@ def run(args):
     argstr = yaml.dump(args.__dict__, default_flow_style=False)
     print(f"\nTraining Arguments:\n{argstr}\n")
     
+    # Read the data
     df = pd.read_csv(path)
     train_df, valid_df = train_test_split(df, test_size=0.2, random_state=42)
     
