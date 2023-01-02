@@ -54,8 +54,10 @@ def run(args):
             # Move images and masks to gpu
             images = images.to(device)
             masks = masks.to(device)
-
+            
+            # Reset gradient of the optimizer
             optimizer.zero_grad()
+            
             logits, loss = model(images, masks)
             loss.backward()
             optimizer.step()
