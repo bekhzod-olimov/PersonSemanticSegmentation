@@ -42,7 +42,7 @@ def run(args):
     model.to(device)
 
     # Train function
-    def train_fn(data_loader, model, optimizer):
+    def train_fn(data_loader, model, optimizer, device):
 
         # Change to train mode
         model.train()
@@ -76,7 +76,7 @@ def run(args):
         return total_loss / len(data_loader)
 
     # Validation function
-    def eval_fn(data_loader, model):
+    def eval_fn(data_loader, model, device):
 
         # Change to evaluation mode
         model.eval()
@@ -91,8 +91,8 @@ def run(args):
             for images, masks in tqdm(data_loader):
                 
                 # Move images and masks to gpu                
-                images = images.to(DEVICE)
-                masks = masks.to(DEVICE)
+                images = images.to(device)
+                masks = masks.to(device)
                 optimizer.zero_grad()
                 logits, loss = model(images, masks)
                 total_loss += loss.item()
