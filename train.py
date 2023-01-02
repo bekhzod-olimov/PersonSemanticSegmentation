@@ -45,8 +45,10 @@ def run(args):
     def train_fn(data_loader, model, optimizer):
 
         model.train()
+        # Set initial loss to 0
         total_loss = 0
-
+        
+        # Go trough dataloader
         for images, masks in tqdm(data_loader):
             images = images.to(DEVICE)
             masks = masks.to(DEVICE)
