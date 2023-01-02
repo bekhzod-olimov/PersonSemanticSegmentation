@@ -90,6 +90,7 @@ def run(args):
             # Go through the dataloader
             for images, masks in tqdm(data_loader):
                 
+                # Move images and masks to gpu                
                 images = images.to(DEVICE)
                 masks = masks.to(DEVICE)
                 optimizer.zero_grad()
