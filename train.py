@@ -70,6 +70,7 @@ def run(args):
             # Add loss of the batch to the total loss
             total_loss += loss.item()
         
+        # Return average loss of the epoch
         return total_loss / len(data_loader)
 
     # Validation function
