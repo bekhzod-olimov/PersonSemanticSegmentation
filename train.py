@@ -115,7 +115,8 @@ def run(args):
         # Get train and validation losses
         train_loss = train_fn(trainloader, model, optimizer, device)
         valid_loss = eval_fn(validloader, model, device)
-
+        
+        # Save the best model
         if valid_loss < best_valid_loss:
             best_valid_loss = valid_loss
             torch.save(model.state_dict(), f'{save_path}/best_model.pt')
