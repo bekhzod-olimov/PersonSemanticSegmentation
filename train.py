@@ -109,8 +109,10 @@ def run(args):
     # Initialize Adam optimizer
     optimizer = torch.optim.Adam(model.parameters(), lr=lr)
 
+    # Start training process
     for epoch in range(epochs):
-
+        
+        # Get train and validation losses
         train_loss = train_fn(trainloader, model, optimizer, device)
         valid_loss = eval_fn(validloader, model, device)
 
