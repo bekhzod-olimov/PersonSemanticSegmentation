@@ -93,8 +93,11 @@ def run(args):
                 # Move images and masks to gpu                
                 images = images.to(device)
                 masks = masks.to(device)
-                optimizer.zero_grad()
+                
+                # Compute logits and loss
                 logits, loss = model(images, masks)
+                
+                # Add loss of the batch to the total loss
                 total_loss += loss.item()
 
         return total_loss / len(data_loader)
