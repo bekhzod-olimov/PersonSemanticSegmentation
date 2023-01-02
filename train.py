@@ -50,8 +50,10 @@ def run(args):
         
         # Go trough dataloader
         for images, masks in tqdm(data_loader):
-            images = images.to(DEVICE)
-            masks = masks.to(DEVICE)
+            
+            # Move images and masks to gpu
+            images = images.to(device)
+            masks = masks.to(device)
 
             optimizer.zero_grad()
             logits, loss = model(images, masks)
