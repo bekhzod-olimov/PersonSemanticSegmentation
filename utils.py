@@ -6,22 +6,24 @@ import segmentation_models_pytorch as smp
 from segmentation_models_pytorch.losses import DiceLoss
 import albumentations as A
 
-IMAGE_SIZE = 320
+# Set train variables
+image_size = 320
 ENCODER = "timm-mobilenetv3_large_100"
 WEIGHTS = "imagenet"
 BATCH_SIZE = 16
 DEVICE = 'cuda:1'
 
+# Transformations function
 def get_train_augs():
           return A.Compose([
-              A.Resize(IMAGE_SIZE, IMAGE_SIZE),
+              A.Resize(image_size, image_size),
               A.HorizontalFlip(p=0.5),
               A.VerticalFlip(p=0.5)
           ])
 
 def get_valid_augs():
       return A.Compose([
-          A.Resize(IMAGE_SIZE, IMAGE_SIZE),
+          A.Resize(image_size, image_size),
   ])
 
 def get_imgs_and_masks(row):
@@ -30,8 +32,8 @@ def get_imgs_and_masks(row):
     mask_path = row.masks
     image = cv2.cvtColor(cv2.imread(image_path), cv2.COLOR_BGR2RGB)
     mask = cv2.imread(mask_path, cv2.IMREAD_GRAYSCALE)
-    image = cv2.resize(image, (IMAGE_SIZE,IMAGE_SIZE))
-    mask = np.expand_dims(cv2.resize(mask, (IMAGE_SIZE,IMAGE_SIZE)), axis=-1)
+    image = cv2.resize(image, (image_size,image_size))
+    mask = np.expand_dims(cv2.resize(mask, (image_size,image_size)), axis=-1)
 
     return image, mask
 
