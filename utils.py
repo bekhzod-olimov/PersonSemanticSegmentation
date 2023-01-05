@@ -52,6 +52,16 @@ def get_imgs_and_masks(row):
 # Dataset class
 class SegmentationDataset(Dataset):
     
+          """
+
+          Gets dataframe and augmentations and returns dataset
+
+          Arguments:
+          df - dataframe;
+          augmentations - transformations.
+          
+          """
+
     # Initialization
     def __init__(self, df, augmentations):
         self.df = df
