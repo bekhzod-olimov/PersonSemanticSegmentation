@@ -8,7 +8,7 @@ import albumentations as A
 
 # Set train variables
 image_size = 320
-WEIGHTS = "imagenet"
+weights = "imagenet"
 BATCH_SIZE = 16
 DEVICE = 'cuda:1'
 
@@ -86,11 +86,11 @@ class SegmentationModel(nn.Module):
         super(SegmentationModel, self).__init__()
 
         self.arc = smp.Unet(
-            encoder_name=ENCODER,
-            encoder_weights=WEIGHTS,
-            in_channels=3,
-            classes=1,
-            activation=None
+            encoder_name = encoder,
+            encoder_weights = weights,
+            in_channels = 3,
+            classes = 1,
+            activation = None
         )
 
     def forward(self, images, masks=None):
