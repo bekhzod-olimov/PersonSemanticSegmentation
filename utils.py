@@ -27,7 +27,7 @@ def get_valid_augs():
           A.Resize(image_size, image_size),
   ])
 
-# Functio to obtain images and masks
+# Function to obtain images and masks
 def get_imgs_and_masks(row):
           
     """
@@ -39,9 +39,11 @@ def get_imgs_and_masks(row):
     row - row of the dataframe.
     
     """
-
+    # Get image and mask
     image_path = row.images
     mask_path = row.masks
+    
+    # Image and mask manipulation
     image = cv2.cvtColor(cv2.imread(image_path), cv2.COLOR_BGR2RGB)
     mask = cv2.imread(mask_path, cv2.IMREAD_GRAYSCALE)
     image = cv2.resize(image, (image_size,image_size))
