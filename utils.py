@@ -93,6 +93,8 @@ class SegmentationModel(nn.Module):
         )
 
     def forward(self, images, masks=None):
+        
+        # Get predicted masks
         logits = self.arc(images)
         if masks != None:
             loss1 = DiceLoss(mode='binary')(logits, masks)
