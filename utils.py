@@ -9,8 +9,6 @@ import albumentations as A
 # Set train variables
 image_size = 320
 weights = "imagenet"
-BATCH_SIZE = 16
-DEVICE = 'cuda:1'
 
 # Train transformations function
 def get_train_augs():
@@ -84,7 +82,8 @@ class SegmentationDataset(Dataset):
 class SegmentationModel(nn.Module):
     def __init__(self):
         super(SegmentationModel, self).__init__()
-
+        
+        # Get Unet with pretrained weights
         self.arc = smp.Unet(
             encoder_name = encoder,
             encoder_weights = weights,
