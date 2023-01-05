@@ -96,9 +96,11 @@ class SegmentationModel(nn.Module):
         
         # Get predicted masks
         logits = self.arc(images)
+
+        # Compute two loss values
         if masks != None:
-            loss1 = DiceLoss(mode='binary')(logits, masks)
-            loss2 = nn.BCEWithLogitsLoss()(logits, masks)
+          loss1 = DiceLoss(mode='binary')(logits, masks)
+          loss2 = nn.BCEWithLogitsLoss()(logits, masks)
             
             return logits, loss1 + loss2
 
