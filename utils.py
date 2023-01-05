@@ -51,20 +51,23 @@ def get_imgs_and_masks(row):
 
     return image, mask
 
-
+# Dataset class
 class SegmentationDataset(Dataset):
+    
+    # Initialization
     def __init__(self, df, augmentations):
         self.df = df
         self.augmentations = augmentations
     
     def __len__(self):
         return len(self.df)
+
     def __getitem__(self, idx):
+                    
         row = self.df.iloc[idx]
         image, mask = get_imgs_and_masks(row)
-        # print(image.shape)
-        # print(mask.shape)
-
+        
+        # Apply augmentations
         if self.augmentations:
             data = self.augmentations(image=image, mask=mask)
             image = data['image']
@@ -76,8 +79,8 @@ class SegmentationDataset(Dataset):
         mask = torch.round(torch.Tensor(mask) / 255.)
 
         return image, mask
-    
-    
+
+# Model class
 class SegmentationModel(nn.Module):
     def __init__(self):
         super(SegmentationModel, self).__init__()
