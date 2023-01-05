@@ -12,14 +12,16 @@ WEIGHTS = "imagenet"
 BATCH_SIZE = 16
 DEVICE = 'cuda:1'
 
-# Transformations function
+# Train transformations function
 def get_train_augs():
+          
           return A.Compose([
               A.Resize(image_size, image_size),
               A.HorizontalFlip(p=0.5),
               A.VerticalFlip(p=0.5)
           ])
 
+# Validation transformations function
 def get_valid_augs():
       return A.Compose([
           A.Resize(image_size, image_size),
