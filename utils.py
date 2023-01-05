@@ -27,7 +27,18 @@ def get_valid_augs():
           A.Resize(image_size, image_size),
   ])
 
+# Functio to obtain images and masks
 def get_imgs_and_masks(row):
+          
+    """
+    
+    Gets row in the dataframe manipulates images and masks;
+    returns image and mask.
+    
+    Argument:
+    row - row of the dataframe.
+    
+    """
 
     image_path = row.images
     mask_path = row.masks
