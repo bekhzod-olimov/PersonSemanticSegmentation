@@ -8,7 +8,6 @@ import albumentations as A
 
 # Set train variables
 image_size = 320
-ENCODER = "timm-mobilenetv3_large_100"
 WEIGHTS = "imagenet"
 BATCH_SIZE = 16
 DEVICE = 'cuda:1'
