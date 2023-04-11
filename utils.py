@@ -1,3 +1,4 @@
+# Import libraries
 import cv2, torch
 import numpy as np 
 from torch.utils.data import Dataset
@@ -13,10 +14,20 @@ weights = "imagenet"
 # Train transformations function
 def get_train_augs():
           
+          """
+          
+          This function initialize and return train arguments.
+          
+          Output:
+               
+               train process transformations.
+          
+          """
+          
           return A.Compose([
-              A.Resize(image_size, image_size),
-              A.HorizontalFlip(p=0.5),
-              A.VerticalFlip(p=0.5)
+                 A.Resize(image_size, image_size),
+                 A.HorizontalFlip(p = 0.5),
+                 A.VerticalFlip(p = 0.5)
           ])
 
 # Validation transformations function
