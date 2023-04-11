@@ -15,28 +15,35 @@ weights = "imagenet"
 def get_train_augs():
           
           """
-          
-          This function initialize and return train arguments.
-          
+
+          This function initialize and return train dataset transformations.
+
           Output:
-               
+
                train process transformations.
-          
+
           """
-          
+
           return A.Compose([
                  A.Resize(image_size, image_size),
                  A.HorizontalFlip(p = 0.5),
                  A.VerticalFlip(p = 0.5)
           ])
 
-# Validation transformations function
 def get_valid_augs():
-      return A.Compose([
-          A.Resize(image_size, image_size),
-  ])
+          
+      """
+      
+      This function initialize and return validation dataset transformations.
+      
+      Output:
+      
+           train process transformations.
+      
+      """
+          
+      return A.Compose([A.Resize(image_size, image_size)])
 
-# Function to obtain images and masks
 def get_imgs_and_masks(row):
           
     """
