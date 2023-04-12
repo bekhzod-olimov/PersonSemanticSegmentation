@@ -91,6 +91,21 @@ class SegmentationDataset(Dataset):
 
     def __getitem__(self, idx):
                     
+        """
+        
+        This function gets an index in the dataset and reads, applies several functions and returns an image with a corresponding mask.
+        
+        Argument:
+          
+               idx    - index of an image path in the dataset, int.
+               
+        Outputs:
+        
+               image  - an output image, tensor;
+               mask   - an output mask, tensor.
+        
+        """
+
         row = self.df.iloc[idx]
         image, mask = get_imgs_and_masks(row)
         
