@@ -62,31 +62,32 @@ def get_imgs_and_masks(row):
     # Image and mask manipulation
     image = cv2.cvtColor(cv2.imread(image_path), cv2.COLOR_BGR2RGB)
     mask = cv2.imread(mask_path, cv2.IMREAD_GRAYSCALE)
-    image = cv2.resize(image, (image_size,image_size))
-    mask = np.expand_dims(cv2.resize(mask, (image_size,image_size)), axis=-1)
+    image = cv2.resize(image, (image_size, image_size))
+    mask = np.expand_dims(cv2.resize(mask, (image_size, image_size)), axis = -1)
 
     return image, mask
 
-# Dataset class
 class SegmentationDataset(Dataset):
     
           """
 
-          Gets dataframe and augmentations and returns dataset
+          This function gets a dataframe and augmentations and returns a dataset.
 
           Arguments:
-          df - dataframe;
-          augmentations - transformations.
+
+                df            - a dataframe, pandas object;
+                augmentations - transformations.
+                
+          Output:
           
+                dataset       - dataset, torch data object.
+
           """
 
     # Initialization
-    def __init__(self, df, augmentations):
-        self.df = df
-        self.augmentations = augmentations
-    
-    def __len__(self):
-        return len(self.df)
+    def __init__(self, df, augmentations): self.df, self.augmentations = df, augmentations
+
+    def __len__(self): return len(self.df)
 
     def __getitem__(self, idx):
                     
