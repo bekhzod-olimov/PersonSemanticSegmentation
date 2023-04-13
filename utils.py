@@ -14,35 +14,35 @@ weights = "imagenet"
 # Train transformations function
 def get_train_augs():
           
-      """
+    """
 
-      This function initialize and return train dataset transformations.
+    This function initialize and return train dataset transformations.
 
-      Output:
+    Output:
 
-           train process transformations.
+         train process transformations.
 
-      """
+    """
 
-      return A.Compose([
-             A.Resize(image_size, image_size),
-             A.HorizontalFlip(p = 0.5),
-             A.VerticalFlip(p = 0.5)
-      ])
+    return A.Compose([
+           A.Resize(image_size, image_size),
+           A.HorizontalFlip(p = 0.5),
+           A.VerticalFlip(p = 0.5)
+    ])
 
 def get_valid_augs():
           
-      """
-      
-      This function initialize and return validation dataset transformations.
-      
-      Output:
-      
-           train process transformations.
-      
-      """
-          
-      return A.Compose([A.Resize(image_size, image_size)])
+    """
+    
+    This function initialize and return validation dataset transformations.
+    
+    Output:
+    
+         train process transformations.
+    
+    """
+        
+    return A.Compose([A.Resize(image_size, image_size)])
 
 def get_imgs_and_masks(row):
           
@@ -72,20 +72,20 @@ def get_imgs_and_masks(row):
 
 class SegmentationDataset(Dataset):
     
-          """
+    """
 
-          This function gets a dataframe and augmentations and returns a dataset.
+    This class gets a dataframe and augmentations and returns a dataset.
 
-          Arguments:
+    Arguments:
 
-                df            - a dataframe, pandas object;
-                augmentations - transformations.
-                
-          Output:
+          df            - a dataframe, pandas object;
+          augmentations - transformations.
           
-                dataset       - dataset, torch data object.
+    Output:
+    
+          dataset       - dataset, torch data object.
 
-          """
+    """
 
     # Initialization
     def __init__(self, df, augmentations): self.df, self.augmentations = df, augmentations
@@ -109,23 +109,25 @@ class SegmentationDataset(Dataset):
         
         """
 
+        # Get data
         row = self.df.iloc[idx]
+
+        # Get an image and its corresponding mask
         image, mask = get_imgs_and_masks(row)
         
         # Apply augmentations
         if self.augmentations:
-            data = self.augmentations(image=image, mask=mask)
-            image = data['image']
-            mask = data['mask']
-        image = np.transpose(image, (2,0,1)).astype(np.float32)
-        mask = np.transpose(mask, (2,0,1)).astype(np.float32)
+            data = self.augmentations(image = image, mask = mask)
+          
+            # Get a transformed image and its corresponding transformed mask
+            image, mask = data['image'], data['mask']
+        
+        # Change array to tensor
+        image, mask = np.transpose(image, (2,0,1)).astype(np.float32), np.transpose(mask, (2,0,1)).astype(np.float32)
 
-        image = torch.Tensor(image) / 255.
-        mask = torch.round(torch.Tensor(mask) / 255.)
+        # Normalize and return image and its corresponding mask
+        return torch.Tensor(image) / 255., torch.round(torch.Tensor(mask) / 255.)
 
-        return image, mask
-
-# Model class
 class SegmentationModel(nn.Module):
     def __init__(self):
         super(SegmentationModel, self).__init__()
