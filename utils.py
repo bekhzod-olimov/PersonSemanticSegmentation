@@ -14,21 +14,21 @@ weights = "imagenet"
 # Train transformations function
 def get_train_augs():
           
-          """
+      """
 
-          This function initialize and return train dataset transformations.
+      This function initialize and return train dataset transformations.
 
-          Output:
+      Output:
 
-               train process transformations.
+           train process transformations.
 
-          """
+      """
 
-          return A.Compose([
-                 A.Resize(image_size, image_size),
-                 A.HorizontalFlip(p = 0.5),
-                 A.VerticalFlip(p = 0.5)
-          ])
+      return A.Compose([
+             A.Resize(image_size, image_size),
+             A.HorizontalFlip(p = 0.5),
+             A.VerticalFlip(p = 0.5)
+      ])
 
 def get_valid_augs():
           
@@ -48,22 +48,25 @@ def get_imgs_and_masks(row):
           
     """
     
-    Gets row in the dataframe manipulates images and masks;
-    returns image and mask.
+    This function gets row in the dataframe manipulates images and masks; returns image and mask.
     
     Argument:
-    row - row of the dataframe.
+    
+          row   - a row of the dataframe.
+          
+    Outputs:
+    
+          image - an output image, array;
+          mask  - corresponding mask of the image, array.
     
     """
+
     # Get image and mask
-    image_path = row.images
-    mask_path = row.masks
+    image_path, mask_path = row.images, row.masks
     
     # Image and mask manipulation
-    image = cv2.cvtColor(cv2.imread(image_path), cv2.COLOR_BGR2RGB)
-    mask = cv2.imread(mask_path, cv2.IMREAD_GRAYSCALE)
-    image = cv2.resize(image, (image_size, image_size))
-    mask = np.expand_dims(cv2.resize(mask, (image_size, image_size)), axis = -1)
+    image, mask = cv2.cvtColor(cv2.imread(image_path), cv2.COLOR_BGR2RGB), cv2.imread(mask_path, cv2.IMREAD_GRAYSCALE)
+    image, mask = cv2.resize(image, (image_size, image_size)), np.expand_dims(cv2.resize(mask, (image_size, image_size)), axis = -1)
 
     return image, mask
 
