@@ -45,7 +45,7 @@ def get_imgs_and_masks(row):
     
     This function gets row in the dataframe manipulates images and masks; returns image and mask.
     
-    Argument:
+    Parameter:
     
           row   - a row of the dataframe.
           
@@ -71,14 +71,14 @@ class SegmentationDataset(Dataset):
 
     This class gets a dataframe and augmentations and returns a dataset.
 
-    Arguments:
+    Parameters:
 
-          df            - a dataframe, pandas object;
-          augmentations - transformations.
+          df            - a dataframe, pandas dataframe object;
+          augmentations - transformations, albumentations compose object.
           
     Output:
     
-          dataset       - dataset, torch data object.
+          dataset       - dataset, torch dataset object.
 
     """
 
@@ -93,7 +93,7 @@ class SegmentationDataset(Dataset):
         
         This function gets an index in the dataset and reads, applies several functions and returns an image with a corresponding mask.
         
-        Argument:
+        Parameter:
           
                idx    - index of an image path in the dataset, int.
                
@@ -115,10 +115,10 @@ class SegmentationDataset(Dataset):
             data = self.augmentations(image = image, mask = mask)
           
             # Get a transformed image and its corresponding transformed mask
-            image, mask = data['image'], data['mask']
+            image, mask = data["image"], data["mask"]
         
         # Change array to tensor
-        image, mask = np.transpose(image, (2,0,1)).astype(np.float32), np.transpose(mask, (2,0,1)).astype(np.float32)
+        image, mask = np.transpose(image, (2, 0, 1)).astype(np.float32), np.transpose(mask, (2, 0, 1)).astype(np.float32)
 
         # Normalize and return image and its corresponding mask
         return torch.Tensor(image) / 255., torch.round(torch.Tensor(mask) / 255.)
@@ -128,15 +128,9 @@ class SegmentationModel(nn.Module):
         super(SegmentationModel, self).__init__()
         
         # Get Unet with pretrained weights
-        self.arc = smp.Unet(
-            encoder_name = encoder,
-            encoder_weights = weights,
-            in_channels = 3,
-            classes = 1,
-            activation = None
-        )
+        self.arc = smp.Unet( encoder_name = encoder, encoder_weights = weights, in_channels = 3, classes = 1, activation = None )
 
-    def forward(self, images, masks=None):
+    def forward(self, images, masks = None):
         
         # Get predicted masks
         logits = self.arc(images)
