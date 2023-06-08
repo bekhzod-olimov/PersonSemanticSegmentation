@@ -67,8 +67,7 @@ def run(args):
         for images, masks in tqdm(data_loader):
             
             # Move images and masks to gpu
-            images = images.to(device)
-            masks = masks.to(device)
+            images = images.to(device); masks = masks.to(device)
             
             # Reset gradient of the optimizer
             optimizer.zero_grad()
@@ -90,6 +89,22 @@ def run(args):
 
     # Validation function
     def eval_fn(data_loader, model, device):
+        
+        """
+        
+        This function gets several parameters and conducts one validation epoch.
+        
+        Parameters:
+        
+            data_loader   - validation dataloader, torch dataloader object;
+            model         - model to be trained, segmentation_models_pytorch model object;
+            device        - gpu device type, str.
+        
+        Output:
+        
+            loss          - loss value of the validation epoch, float.
+            
+        """
 
         # Change to evaluation mode
         model.eval()
