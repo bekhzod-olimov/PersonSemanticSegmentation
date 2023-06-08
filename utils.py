@@ -8,8 +8,7 @@ from segmentation_models_pytorch.losses import DiceLoss
 import albumentations as A
 
 # Set train variables
-image_size = 320
-weights = "imagenet"
+image_size, weights = 320, "imagenet"
 
 # Train transformations function
 def get_train_augs():
@@ -20,15 +19,11 @@ def get_train_augs():
 
     Output:
 
-         train process transformations.
+         train process transformations, albumentations compose object.
 
     """
 
-    return A.Compose([
-           A.Resize(image_size, image_size),
-           A.HorizontalFlip(p = 0.5),
-           A.VerticalFlip(p = 0.5)
-    ])
+    return A.Compose([ A.Resize(image_size, image_size), A.HorizontalFlip(p = 0.5), A.VerticalFlip(p = 0.5) ])
 
 def get_valid_augs():
           
@@ -38,7 +33,7 @@ def get_valid_augs():
     
     Output:
     
-         train process transformations.
+         validation process transformations, albumentations compose object.
     
     """
         
