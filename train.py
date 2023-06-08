@@ -38,8 +38,24 @@ def run(args):
     model = SegmentationModel()
     model.to(device)
 
-    # Train function
     def train_fn(data_loader, model, optimizer, device):
+        
+        """
+        
+        This function gets several parameters and conducts one train epoch.
+        
+        Parameters:
+        
+            data_loader   - train dataloader, torch dataloader object;
+            model         - model to be trained, segmentation_models_pytorch model object;
+            optimizer     - optimization function to update trainable parameters, torch optimizer object;
+            device        - gpu device type, str.
+        
+        Output:
+        
+            loss          - loss value of the train epoch, float.
+            
+        """
 
         # Change to train mode
         model.train()
