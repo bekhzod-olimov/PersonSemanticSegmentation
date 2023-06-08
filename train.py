@@ -16,24 +16,23 @@ def run(args):
     lr = args.learning_rate    
     save_path = args.save_path
     
+    # Print train arguments
     argstr = yaml.dump(args.__dict__, default_flow_style=False)
     print(f"\nTraining Arguments:\n{argstr}\n")
     
     # Read the data
     df = pd.read_csv(path)
-    train_df, valid_df = train_test_split(df, test_size=0.2, random_state=42)
     
-    # Split the data into train, validation sets
-    trainset = SegmentationDataset(df=train_df, augmentations=get_train_augs())
-    validset = SegmentationDataset(df=valid_df, augmentations=get_valid_augs())
-    print(f"Size of Trainset : {len(trainset)}")
-    print(f"Size of Validset : {len(validset)}")
+    # Split the data into train and validation sets
+    train_df, valid_df = train_test_split(df, test_size = 0.2, random_state = 2023)
+    
+    # Get train and validation datasets
+    trainset = SegmentationDataset(df = train_df, augmentations = get_train_augs()); validset = SegmentationDataset(df = valid_df, augmentations = get_valid_augs())
+    print(f"Size of Trainset : {len(trainset)}"); print(f"Size of Validset : {len(validset)}")
     
     # Create train and validation dataloaders
-    trainloader = DataLoader(trainset, batch_size=bs, shuffle=True)
-    validloader = DataLoader(validset, batch_size=bs, shuffle=False)
-    print(f"Number of batches in the trainloader: {len(trainloader)}")
-    print(f"Number of batches in the validloader: {len(validloader)}")
+    trainloader = DataLoader(trainset, batch_size = bs, shuffle = True); validloader = DataLoader(validset, batch_size = bs, shuffle = False)
+    print(f"Number of batches in the trainloader: {len(trainloader)}"); print(f"Number of batches in the validloader: {len(validloader)}")
     
     # Create the model and move it to gpu
     model = SegmentationModel()
