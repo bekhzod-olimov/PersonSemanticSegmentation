@@ -119,8 +119,7 @@ def run(args):
             for images, masks in tqdm(data_loader):
                 
                 # Move images and masks to gpu                
-                images = images.to(device)
-                masks = masks.to(device)
+                images = images.to(device); masks = masks.to(device)
                 
                 # Compute logits and loss
                 logits, loss = model(images, masks)
@@ -141,8 +140,7 @@ def run(args):
     for epoch in range(epochs):
         
         # Get train and validation losses
-        train_loss = train_fn(trainloader, model, optimizer, device)
-        valid_loss = eval_fn(validloader, model, device)
+        train_loss = train_fn(trainloader, model, optimizer, device); valid_loss = eval_fn(validloader, model, device)
         
         # Save the best model
         if valid_loss < best_valid_loss:
@@ -157,16 +155,22 @@ def run(args):
     
 if __name__ == "__main__":
     
-    parser = argparse.ArgumentParser(description='Person Semantic Segmentation Arguments')
-    parser.add_argument("-sp", "--save_path", type=str, default='saved_models', help="Path to save trained models")
-    parser.add_argument("-bs", "--batch_size", type=int, default=16, help="Batch size")
-    parser.add_argument("-is", "--im_size", type=int, default=320, help="Images size")
-    parser.add_argument("-d", "--device", type=str, default='cuda:1', help="GPU device number")
-    parser.add_argument("-ip", "--ims_path", type=str, default='data.csv', help="Path to the data")
-    parser.add_argument("-bb", "--backbone", type=str, default='timm-mobilenetv3_large_100', help="Model name for backbone")
-    parser.add_argument("-w", "--weights", type=str, default='imagenet', help="Pretrained weights type")
-    parser.add_argument("-lr", "--learning_rate", type=float, default=3e-3, help="Learning rate value")
-    parser.add_argument("-e", "--epochs", type=int, default=200, help="Number of epochs")
+    # Initialize argument parser
+    parser = argparse.ArgumentParser(description = "Person Semantic Segmentation Arguments")
+    
+    # Add arguments to the parser
+    parser.add_argument("-sp", "--save_path", type = str, default = "saved_models", help = "Path to save trained models")
+    parser.add_argument("-bs", "--batch_size", type = int, default = 16, help = "Batch size")
+    parser.add_argument("-is", "--im_size", type = int, default = 320, help = "Images size")
+    parser.add_argument("-d", "--device", type = str, default = "cuda:1", help = "GPU device number")
+    parser.add_argument("-ip", "--ims_path", type = str, default = "data.csv", help = "Path to the data")
+    parser.add_argument("-bb", "--backbone", type = str, default = "timm-mobilenetv3_large_100", help = "Model name for backbone")
+    parser.add_argument("-w", "--weights", type = str, default = "imagenet", help = "Pretrained weights type")
+    parser.add_argument("-lr", "--learning_rate", type = float, default = 3e-3, help = "Learning rate value")
+    parser.add_argument("-e", "--epochs", type = int, default = 200, help = "Number of epochs")
+    
+    # Parse the arguments
     args = parser.parse_args() 
     
-    run(args) 
+    # Run the script
+    run(args)
