@@ -1,8 +1,6 @@
-import cv2, argparse, torch, sys, yaml, os
-import numpy as np 
-import pandas as pd
+# Import libraries
+import cv2, argparse, torch, sys, yaml, os, albumentations as A, numpy as np, pandas as pd
 from torch.utils.data import DataLoader
-import albumentations as A
 from sklearn.model_selection import train_test_split
 from tqdm import tqdm
 from utils import *
