@@ -3,11 +3,19 @@
 ## Binary semantic segmentation task using a simple [dataset](https://github.com/VikramShenoy97/Human-Segmentation-Dataset.git) containing human images.
 
 ### Create virtual environment
+
 ```python
 conda create -n <ENV_NAME> python=3.9
 conda activate <ENV_NAME>
+```
+1) Install using .txt file:
+
+```python
 pip install -r requirements.txt
 ```
+
+2) Load from yml file
+
 
 ### Sample Images with the corresponding GT masks:
 ![img](https://user-images.githubusercontent.com/50166164/207236717-57d57034-0710-491a-afb9-5bfbfd16d83f.png)
